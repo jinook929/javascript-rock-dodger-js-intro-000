@@ -50,7 +50,10 @@ function checkCollision(rock) {
     if ((rockLeftEdge<=dodgerLeftEdge&&rockRightEdge>=dodgerLeftEdge) 
     || (rockLeftEdge>=dodgerLeftEdge&&rockRightEdge<=dodgerRightEdge) 
     || (rockLeftEdge<=dodgerRightEdge&&rockRightEdge>=dodgerRightEdge)) {
+<<<<<<< HEAD
       ROCKS.forEach(rock => rock.style.left = "-20px")
+=======
+>>>>>>> fb0e061e1bba1524c84f83a047e636772b054368
       return true;
     } else {
       return false;
@@ -74,9 +77,13 @@ function createRock(x) {
    * Now that we have a rock, we'll need to append
    * it to GAME and move it downwards.
    */
+<<<<<<< HEAD
   // GAME.append(rock);
   // GAME.appendChild(rock);
   document.querySelector('#game').appendChild(rock);
+=======
+  GAME.append(rock);
+>>>>>>> fb0e061e1bba1524c84f83a047e636772b054368
 
   /**
    * This function moves the rock. (2 pixels at a time
@@ -92,9 +99,13 @@ function createRock(x) {
      */
     if(checkCollision(rock)) {
       top = 0;
+<<<<<<< HEAD
       rock.remove();
       ROCKS.splice(0, ROCKS.length);
       return endGame();
+=======
+      endGame();
+>>>>>>> fb0e061e1bba1524c84f83a047e636772b054368
     }
 
     /**
@@ -112,6 +123,7 @@ function createRock(x) {
      * we should remove the rock from the DOM.
      */
     else {
+<<<<<<< HEAD
       window.cancelAnimationFrame(moveRock);
       top = 0;
       rock.remove();
@@ -124,6 +136,20 @@ function createRock(x) {
 
   // We should kick off the animation of the rock around here.
   window.requestAnimationFrame(moveRock);
+=======
+      top = 0;
+      cancelAnimationFrame(moveRock);
+      rock.remove();
+      ROCKS.shift();
+      return;
+    }
+    
+    requestAnimationFrame(moveRock);
+  }
+
+  // We should kick off the animation of the rock around here.
+  requestAnimationFrame(moveRock);
+>>>>>>> fb0e061e1bba1524c84f83a047e636772b054368
   
   // Add the rock to ROCKS so that we can remove all rocks
   // when there's a collision.
@@ -142,12 +168,20 @@ function createRock(x) {
  */
 function endGame() {
   clearInterval(gameInterval);
+<<<<<<< HEAD
   // $('.rock').remove();
   let rockClass = document.querySelectorAll(".rock");
   rockClass.forEach(e => e.remove());
   ROCKS.splice(0, ROCKS.length);
   window.removeEventListener('keydown', moveDodger);
   alert("YOU LOSE! ");
+=======
+  let rockClass = document.getElementsByClassName("rock")
+  rockClass.forEach(e => e.parentNode.removeChild(e));
+  ROCKS.splice(0, ROCKS.length);
+  window.removeEventListener('keydown', moveDodger);
+  alert("YOU LOSE!");
+>>>>>>> fb0e061e1bba1524c84f83a047e636772b054368
   START.style.display = "inline";
   DODGER.style.left = "180px";
 }
@@ -163,6 +197,7 @@ function moveDodger(e) {
    * And be sure to use the functions declared below!
    */
    if(e.which === LEFT_ARROW) {
+<<<<<<< HEAD
      e.preventDefault();
      moveDodgerLeft();
      e.stopPropagation();
@@ -171,6 +206,12 @@ function moveDodger(e) {
      e.preventDefault();
      moveDodgerRight();
      e.stopPropagation();
+=======
+     moveDodgerLeft();
+   }
+   if(e.which === RIGHT_ARROW) {
+     moveDodgerRight();
+>>>>>>> fb0e061e1bba1524c84f83a047e636772b054368
    }
    
 }
